@@ -4,7 +4,7 @@ metadata:
   name: mqtt
 spec:
   selector:
-    app.kubernetes.io/name: mqtt
+    app: mqtt
   ports:
-    - protocol: TCP
-      port: 1883
+    - port: 1883
+      protocol: TCP

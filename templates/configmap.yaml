@@ -6,3 +6,4 @@ data:
   mqtt.config: |
     listener 1883
     protocol mqtt
+    allow_anonymous true
