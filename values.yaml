@@ -1,25 +1,20 @@
-mqtt:
-  # Configure mosquitto
-  configuration:
-    # Use the default configuration.
-    default: true
-    
-    # Configure the mosquitto listener
-    listener:
-      # Use the default listener.
-      default: true
+# Configure mosquitto
+configuration: 
 
-      # Configure your own listener port setting
-      port: 1883
-      
-      # Configure your own listener address setting
-      address:
-        # The default is to omit the address part of the listener directive
-        default: true
+  # Configure the listener
+  listener: {}
 
-        # Bind to all interfaces. Change if you need to
-        value: 0.0.0.0
+#   # Sets the port, mosquitto listens on.
+#   # This value is optional.
+#   # If not set, the port 1883 will be used
+#   port: 1883
 
-    persistence:
-      # Enabled the persistence configuration if neccessary
-      enabled: false
+#   # The host interface/address/socket mosquitto listens on.
+#   # This value is optional.
+#   # If not set, mosquitto listens on all interfaces
+#   # See https://mosquitto.org/man/mosquitto-conf-5.html for further instructions
+#   address: "0.0.0.0"
+
+# persistence:
+#   # Enabled the persistence configuration if neccessary
+#   enabled: false

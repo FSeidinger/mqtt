@@ -6,5 +6,5 @@ spec:
   selector:
     app: {{ .Release.Name }}
   ports:
-    - port: 1883
+    - port: {{ template "configuredPort" . }}
       protocol: TCP
