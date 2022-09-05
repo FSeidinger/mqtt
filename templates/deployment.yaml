@@ -1,28 +1,28 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: mqtt
+  name: {{ .Release.Name }}
   labels:
-    app: mqtt
+    app: {{ .Release.Name }}
 spec:
   replicas: 1
   selector:
     matchLabels:
-      app: mqtt
+      app: {{ .Release.Name }}
   template:
     metadata:
       labels:
-        app: mqtt
+        app: {{ .Release.Name }}
     spec:
       volumes:
-        - name: mqtt-config
+        - name: {{ .Release.Name }}-config
           configMap:
-            name: mqtt
+            name: {{ .Release.Name }}
             items:
             - key: mqtt.config
               path: mosquitto.conf
       containers:
-        - name: mosquitto
+        - name: {{ .Release.Name }}
           image: eclipse-mosquitto:2.0.15
           volumeMounts:
             - name: mqtt-config

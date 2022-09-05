@@ -2,7 +2,7 @@ apiVersion: traefik.containo.us/v1alpha1
 kind: IngressRouteTCP
 
 metadata:
-  name: mqtt
+  name: {{ .Release.Name }}
 
 spec:
   entryPoints:
@@ -11,5 +11,5 @@ spec:
   routes:
     - match: HostSNI(`*`)
       services:
-        - name: mqtt
+        - name: {{ .Release.Name }}
           port: 1883

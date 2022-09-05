@@ -1,7 +1,7 @@
 apiVersion: v1
 kind: ConfigMap
 metadata:
-  name: mqtt
+  name: {{ .Release.Name }}
 data:
   mqtt.config: |
     listener 1883
