@@ -1,0 +1,39 @@
+suite: test MQTT configuration
+templates:
+  - configmap.yaml
+tests:
+  - it: Should render valid mosquitto listner port
+    asserts:
+      - equal:
+          path: data.[mqtt.config]
+          value: | 
+            listener 1883
+            protocol mqtt
+            allow_anonymous true
+
+  - it: Should render valid mosquitto listner with custom port
+    set:
+      configuration:
+        listener:
+          port: 1885
+    asserts:
+      - equal:
+          path: data.[mqtt.config]
+          value: |
+            listener 1885
+            protocol mqtt
+            allow_anonymous true
+
+  - it: Should render valid mosquitto listner with custom port and address
+    set:
+      configuration:
+        listener:
+          port: 1885
+          address: "127.0.0.1"
+    asserts:
+      - equal:
+          path: data.[mqtt.config]
+          value: |
+            listener 1885 127.0.0.1
+            protocol mqtt
+            allow_anonymous true

@@ -4,6 +4,6 @@ metadata:
   name: {{ .Release.Name }}
 data:
   mqtt.config: |
-    listener {{ template "configuredPort" . }}
+    listener {{ template "configuredPort" . }} {{ template "configuredAddress" . }}
     protocol mqtt
     allow_anonymous true
