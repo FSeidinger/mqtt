@@ -23,7 +23,7 @@ spec:
               path: mosquitto.conf
       containers:
         - name: {{ .Release.Name }}
-          image: eclipse-mosquitto:2.0.15
+          image: eclipse-mosquitto:{{ .Chart.AppVersion }}
           volumeMounts:
             - name: mqtt-config
               mountPath: /mosquitto/config          

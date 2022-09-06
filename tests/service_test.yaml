@@ -1,7 +1,40 @@
-suite: test service configuration
+suite: test service manifest
 templates:
   - service.yaml
+release:
+  name: mqtt
+  namespace: mqtt
+  revision: 3
 tests:
+  - it: Should have the right API version
+    asserts:
+      - equal:
+          path: apiVersion
+          value: v1
+
+  - it: Should have the right kind
+    asserts:
+      - isKind:
+          of: Service
+
+  - it: Should have the right meta data
+    asserts:
+      - equal:
+          path: metadata
+          value:
+            name: mqtt
+
+  - it: Should have the right spec
+    asserts:
+      - equal:
+          path: spec
+          value:
+            ports:
+              - port: 1883
+                protocol: TCP
+            selector:
+              app: mqtt
+
   - it: Should render valid MQTT default port
     asserts:
       - equal:

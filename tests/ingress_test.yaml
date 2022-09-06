@@ -1,7 +1,18 @@
-suite: test ingress configuration
+suite: test ingress manifest
 templates:
   - ingress.yaml
 tests:
+  - it: Should have the right API version
+    asserts:
+      - equal:
+          path: apiVersion
+          value: traefik.containo.us/v1alpha1
+
+  - it: Should have the right kind
+    asserts:
+      - isKind:
+          of: IngressRouteTCP
+
   - it: Should target ingress entry point mqtt
     asserts:
       - equal:

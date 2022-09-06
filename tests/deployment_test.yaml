@@ -1,0 +1,55 @@
+suite: test deployment manifest
+templates:
+  - deployment.yaml
+release:
+  name: mqtt
+  namespace: mqtt
+  revision: 3
+tests:
+  - it: Should have the right API version
+    asserts:
+      - equal:
+          path: apiVersion
+          value: apps/v1
+
+  - it: Should have the right kind
+    asserts:
+      - isKind:
+          of: Deployment
+
+  - it: Should have the right meta data
+    asserts:
+      - equal:
+          path: metadata
+          value:
+            labels:
+              app: mqtt
+            name: mqtt
+
+  - it: Should have the right spec
+    asserts:
+      - equal:
+          path: spec
+          value:
+            replicas: 1
+            selector:
+              matchLabels:
+                app: mqtt
+            template:
+              metadata:
+                labels:
+                  app: mqtt
+              spec:
+                volumes:
+                  - name: mqtt-config
+                    configMap:
+                      name: mqtt
+                      items:
+                      - key: mqtt.config
+                        path: mosquitto.conf
+                containers:
+                  - name: mqtt
+                    image: eclipse-mosquitto:2.0.16
+                    volumeMounts:
+                      - name: mqtt-config
+                        mountPath: /mosquitto/config          

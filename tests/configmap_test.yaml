@@ -1,7 +1,29 @@
-suite: test MQTT configuration
+suite: test config map manifest
 templates:
   - configmap.yaml
+release:
+  name: mqtt
+  namespace: mqtt
+  revision: 3
 tests:
+  - it: Should have the right API version
+    asserts:
+      - equal:
+          path: apiVersion
+          value: v1
+
+  - it: Should have the right kind
+    asserts:
+      - isKind:
+          of: ConfigMap
+
+  - it: Should have the right meta data
+    asserts:
+      - equal:
+          path: metadata
+          value:
+            name: mqtt
+
   - it: Should render valid mosquitto listner port
     asserts:
       - equal:
