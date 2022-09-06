@@ -49,7 +49,7 @@ tests:
                         path: mosquitto.conf
                 containers:
                   - name: mqtt
-                    image: eclipse-mosquitto:2.0.16
+                    image: eclipse-mosquitto:2.0.15
                     volumeMounts:
                       - name: mqtt-config
                         mountPath: /mosquitto/config          

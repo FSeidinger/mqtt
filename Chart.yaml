@@ -4,5 +4,5 @@ description: An MQTT service on base of mosquitto
 
 type: application
 icon: https://mosquitto.org/images/mosquitto-text-side-28.png
-version: 0.1.9
-appVersion: 2.0.16
+version: 0.1.10
+appVersion: 2.0.15
