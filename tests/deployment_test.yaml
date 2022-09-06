@@ -47,4 +47,22 @@ tests:
                     image: eclipse-mosquitto:2.0.15
                     volumeMounts:
                       - name: mqtt-config
-                        mountPath: /mosquitto/config          
+                        mountPath: /mosquitto/config
+
+  - it: Should have the right spec with persistence
+    set:
+      configuration:
+        persistence:
+          enabled: true
+    asserts:
+      - equal:
+          path: spec.template.spec.volumes[1]
+          value:
+            name: mqtt-data
+            persistentVolumeClaim:
+              claimName: mqtt-data
+      - equal:
+          path: spec.template.spec.containers[0].volumeMounts[1]
+          value:
+            name: mqtt-data
+            mountPath: /mosquitto/data

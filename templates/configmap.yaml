@@ -6,4 +6,8 @@ data:
   mqtt.config: |
     listener {{ template "configuredPort" . }} {{ template "configuredAddress" . }}
     protocol mqtt
+    {{ if .Values.configuration.persistence.enabled }}
+    persistence true
+    persistence_location /mosquitto/data
+    {{ end }}
     allow_anonymous true

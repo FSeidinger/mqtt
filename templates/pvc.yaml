@@ -10,6 +10,6 @@ spec:
   storageClassName: local-path
   resources:
     requests:
-      storage: {{ .Values.configuration.persistence.size | default "256MiB" }}
+      storage: {{ .Values.configuration.persistence.size | default "256Mi" }}
 
 {{- end -}}

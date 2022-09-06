@@ -28,9 +28,10 @@ tests:
     asserts:
       - equal:
           path: data.[mqtt.config]
-          value: | 
+          value: |
             listener 1883
             protocol mqtt
+
             allow_anonymous true
 
   - it: Should render valid mosquitto listner with custom port
@@ -44,6 +45,7 @@ tests:
           value: |
             listener 1885
             protocol mqtt
+
             allow_anonymous true
 
   - it: Should render valid mosquitto listner with custom port and address
@@ -58,4 +60,22 @@ tests:
           value: |
             listener 1885 127.0.0.1
             protocol mqtt
+
+            allow_anonymous true
+
+  - it: Should render valid persistence configuration
+    set:
+      configuration:
+        persistence:
+          enabled: true
+    asserts:
+      - equal:
+          path: data.[mqtt.config]
+          value: |
+            listener 1883
+            protocol mqtt
+
+            persistence true
+            persistence_location /mosquitto/data
+            
             allow_anonymous true

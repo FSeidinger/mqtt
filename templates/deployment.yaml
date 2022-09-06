@@ -21,9 +21,18 @@ spec:
             items:
             - key: mqtt.config
               path: mosquitto.conf
+        {{ if .Values.configuration.persistence.enabled }}              
+        - name: {{ .Release.Name }}-data
+          persistentVolumeClaim:
+            claimName: mqtt-data
+        {{ end }}
       containers:
         - name: {{ .Release.Name }}
           image: eclipse-mosquitto:{{ .Chart.AppVersion }}
           volumeMounts:
             - name: mqtt-config
-              mountPath: /mosquitto/config          
+              mountPath: /mosquitto/config
+            {{ if .Values.configuration.persistence.enabled }}              
+            - name: mqtt-data
+              mountPath: /mosquitto/data
+            {{ end }}
