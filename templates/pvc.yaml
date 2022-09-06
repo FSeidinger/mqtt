@@ -1,0 +1,15 @@
+{{- if .Values.configuration.persistence.enabled -}}
+
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+  name: {{ .Release.Name }}-data
+spec:
+  accessModes:
+    - ReadWriteOnce
+  storageClassName: local-path
+  resources:
+    requests:
+      storage: {{ .Values.configuration.persistence.size | default "256MiB" }}
+
+{{- end -}}

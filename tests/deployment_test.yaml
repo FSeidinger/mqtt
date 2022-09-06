@@ -6,16 +6,11 @@ release:
   namespace: mqtt
   revision: 3
 tests:
-  - it: Should have the right API version
+  - it: Should generate a manifest
     asserts:
-      - equal:
-          path: apiVersion
-          value: apps/v1
-
-  - it: Should have the right kind
-    asserts:
-      - isKind:
-          of: Deployment
+      - containsDocument:
+          kind: Deployment
+          apiVersion: apps/v1
 
   - it: Should have the right meta data
     asserts:

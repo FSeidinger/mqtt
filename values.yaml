@@ -6,15 +6,25 @@ configuration:
 
 #   # Sets the port, mosquitto listens on.
 #   # This value is optional.
-#   # If not set, the port 1883 will be used
+#   # If not set, the port 1883 will be used.
 #   port: 1883
 
 #   # The host interface/address/socket mosquitto listens on.
 #   # This value is optional.
-#   # If not set, mosquitto listens on all interfaces
+#   # If not set, mosquitto listens on all interfaces.
 #   # See https://mosquitto.org/man/mosquitto-conf-5.html for further instructions
 #   address: "0.0.0.0"
 
-# persistence:
+  # Configure persistence
+  persistence: {}
+
 #   # Enabled the persistence configuration if neccessary
-#   enabled: false
+#   # This value is optional.
+#   # if not enabled, no persistence will be used
+#   # enabled: true
+
+#   # The storage size for the persistent volume.
+#   # This value is optional.
+#   # If not set, the default value of 256MBi will be used.
+#   # See https://kubernetes.io/docs/reference/kubernetes-api/common-definitions/quantity/#Quantity for further information
+#   # size: 256MBi

@@ -1,0 +1,18 @@
+suite: test persitent volume claim
+templates:
+  - pvc.yaml
+tests:
+    - it: Should not generate a manifest, if persistence in not enabled
+      asserts:
+        - hasDocuments:
+          count: 0
+
+    - it: Should generate a manifest
+      set:
+        configuration:
+          persistence:
+            enabled: true
+      asserts:
+        - containsDocument:
+            kind: PersistentVolumeClaim
+            apiVersion: v1
