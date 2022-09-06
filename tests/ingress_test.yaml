@@ -1,0 +1,20 @@
+suite: test ingress configuration
+templates:
+  - ingress.yaml
+tests:
+  - it: Should target ingress entry point mqtt
+    asserts:
+      - equal:
+          path: spec.entryPoints
+          value:
+            - mqtt
+
+  - it: Should setup one valid service route
+    asserts:
+      - equal:
+          path: spec.routes
+          value:
+            - match: HostSNI(`*`)
+              services:
+                - name: RELEASE-NAME
+                  port: 1883

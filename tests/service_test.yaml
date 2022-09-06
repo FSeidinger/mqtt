@@ -1,0 +1,23 @@
+suite: test service configuration
+templates:
+  - service.yaml
+tests:
+  - it: Should render valid MQTT default port
+    asserts:
+      - equal:
+          path: spec.ports
+          value:
+            - port: 1883
+              protocol: TCP
+
+  - it: Should render valid MQTT custom port
+    set:
+      configuration:
+        listener:
+          port: 1885
+    asserts:
+      - equal:
+          path: spec.ports
+          value:
+            - port: 1885
+              protocol: TCP
