@@ -48,6 +48,10 @@ tests:
                     volumeMounts:
                       - name: mqtt-config
                         mountPath: /mosquitto/config
+                securityContext:
+                  fsGroup: 1883
+                  runAsGroup: 1883
+                  runAsUser: 1883                        
 
   - it: Should have the right spec with persistence
     set:
