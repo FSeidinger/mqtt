@@ -12,7 +12,7 @@ configuration:
 #   # The host interface/address/socket mosquitto listens on.
 #   # This value is optional.
 #   # If not set, mosquitto listens on all interfaces.
-#   # See https://mosquitto.org/man/mosquitto-conf-5.html for further instructions
+#   # See https://mosquitto.org/man/mosquitto-conf-5.html for further information.
 #   address: "0.0.0.0"
 
   # Configure persistence
