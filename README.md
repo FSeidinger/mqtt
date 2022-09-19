@@ -71,9 +71,21 @@ configuration:
         enabled: true
 ```
 
+### Select the storage class
+
+When using the mosquitto MQTT broker with persistence, you can choose the storage class provider. If not set, the k3s default storage class provider `local-path` will be used. See the k3s documentation
+on https://rancher.com/docs/k3s/latest/en/storage/ on how to install and use other storage class providers.
+
+```yaml
+configuration:
+    persistence:
+        enabled: true
+        storageClassName: local-path
+```
+
 ### Set the persistence volumes size
 
-When using the mosquitto MQTT broker with persistence, you can either use the default size of the volume used to back the persitence database of `256Mi` or you can set the size with the volume size value.
+When using the mosquitto MQTT broker with persistence, you can either use the default size of the volume used to back the persistence database with `256Mi` or you can set the size with the volume size value of your choice.
 
 ```yaml
 configuration:

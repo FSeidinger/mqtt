@@ -16,3 +16,29 @@ tests:
         - containsDocument:
             kind: PersistentVolumeClaim
             apiVersion: v1
+            spec:
+              accessModes:
+                - ReadWriteOnce
+              storageClassName: local-path
+              resources:
+                requests:
+                  storage: "256Mi"
+
+    - it: Should select a storage class
+      set:
+        configuration:
+          persistence:
+            enabled: true
+            storageClassName: heinz
+            size: 1024Mi
+      asserts:
+        - containsDocument:
+            kind: PersistentVolumeClaim
+            apiVersion: v1
+            spec:
+              accessModes:
+                - ReadWriteOnce
+              storageClassName: heinz
+              resources:
+                requests:
+                  storage: "1024Mi"

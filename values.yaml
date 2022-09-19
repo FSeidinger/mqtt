@@ -18,10 +18,15 @@ configuration:
   # Configure persistence
   persistence: {}
 
-#   # Enabled the persistence configuration if neccessary
+#   # Enables the persistence configuration if neccessary.
 #   # This value is optional.
-#   # if not enabled, no persistence will be used
+#   # if not enabled, no persistence will be used.
 #   # enabled: true
+
+#   # Set the storage class for the volume.
+#   # This value is optional.
+#   # if not set, the default local-path is used
+#   # storageClassName: local-path
 
 #   # The storage size for the persistent volume.
 #   # This value is optional.
